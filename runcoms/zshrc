@@ -31,7 +31,9 @@ unalias l
 alias l='ls -la' # Lists in one column, hidden files.
 
 alias pgrep='pgrep -f'
+
 alias pkill='pkill -9 -f'
+
 alias port='netstat -ntlp tcp' # opening ports
 
 alias pyshare='python3 -m http.server' # share current folder
