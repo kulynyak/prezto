@@ -1,0 +1,9 @@
+# function up() {
+# about 'update brew packages'
+brew update
+brew upgrade
+brew cleanup
+ls -l /usr/local/Homebrew/Library/Homebrew | grep homebrew-cask |
+  awk '{print $9}' | for evil_symlink in $(cat -); do rm -v /usr/local/Homebrew/Library/Homebrew/$evil_symlink; done
+brew doctor
+# }

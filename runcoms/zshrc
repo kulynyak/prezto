@@ -11,3 +11,71 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+alias vi="$EDITOR"
+alias vim="$EDITOR"
+alias svi="sudo $EDITOR"
+alias snano="sudo nano"
+
+alias x='exit'
+alias zreload='exec zsh'
+
+alias hist='fc -l 1'
+
+alias dud='du -s *(/)' # show directories size
+
+unalias rm
+alias rm='trash'
+
+unalias l
+alias l='ls -la' # Lists in one column, hidden files.
+
+alias pgrep='pgrep -f'
+alias pkill='pkill -9 -f'
+alias port='netstat -ntlp tcp' # opening ports
+
+alias pyshare='python3 -m http.server' # share current folder
+
+function lsgrep() {
+  # about 'search through directory contents with grep'
+  gls -l | grep -E -i "$*"
+}
+
+function quiet() {
+  # about 'what *does* this do?'
+  $* &>/dev/null &
+}
+
+function buf() {
+  # about 'back up file with timestamp'
+  # param 'filename'
+  local filename=$1
+  local filetime=$(date +%Y%m%d_%H%M%S)
+  cp -a "${filename}" "${filename}_${filetime}"
+}
+
+function explain() {
+  # about 'explain any bash command via mankier.com manpage API'
+  # param '1: Name of the command to explain'
+  # example '$ explain                # interactive mode. Type commands to explain in REPL'
+  # example '$ explain '"'"'cmd -o | ...'"'"' # one quoted command to explain it.'
+  if [ "$#" -eq 0 ]; then
+    while read -p "Command: " cmd; do
+      curl -Gs "https://www.mankier.com/api/explain/?cols="$(tput cols) --data-urlencode "q=$cmd"
+    done
+    echo "Bye!"
+  elif [ "$#" -eq 1 ]; then
+    curl -Gs "https://www.mankier.com/api/explain/?cols="$(tput cols) --data-urlencode "q=$1"
+  else
+    echo "Usage"
+    echo "explain                  interactive mode."
+    echo "explain 'cmd -o | ...'   one quoted command to explain it."
+  fi
+}
+
+function sshlist() {
+  # about 'list hosts defined in ssh config'
+  awk '$1 ~ /Host$/ {for (i=2; i<=NF; i++) print $i}' ~/.ssh/config
+}
+
+

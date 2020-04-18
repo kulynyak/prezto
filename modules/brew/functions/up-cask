@@ -1,0 +1,6 @@
+# function up-cask() {
+# about update outdated casks
+OUTDATED=$(brew cask outdated --greedy --verbose|sed -E '/latest/d'|awk '{print $1}' ORS=' '|tr -d '\n')
+echo "outdated: $OUTDATED"
+[[ ! -z "$OUTDATED" ]] && brew cask reinstall ${=OUTDATED}
+# }
