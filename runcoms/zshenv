@@ -31,14 +31,6 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/
 HOME_BIN="$HOME/bin"
 [[ -d "$HOME_BIN" ]] && PATH="$HOME_BIN:$PATH"
 
-# gem
-export GEM_HOME="$HOME/.gem"
-if which gem >/dev/null; then
-    GEM_PATH=$(ruby -e 'puts Gem.user_dir' | sed s/2.3.0/2.6.0/)
-    [[ -d "$GEM_PATH" ]] || mkdir -p $GEM_PATH
-    PATH="$GEM_PATH:$GEM_PATH/bin:$PATH"
-fi
-
 # gnu man
 MANPATH_GNU="/usr/local/opt/findutils/libexec/gnuman"
 [[ -d "$MANPATH_GNU" ]] && export MANPATH="$MANPATH_GNU:$MANPATH"
@@ -55,7 +47,8 @@ ANACONDA3="/usr/local/anaconda3/bin"
 [[ -d "$ANACONDA3" ]] && PATH="$ANACONDA3:$PATH"
 
 # go
-GOROOT="$(brew --prefix golang)/libexec"
+# GOROOT="$(brew --prefix golang)/libexec"
+GOROOT="/usr/local/opt/go/libexec"
 if [ -d "$GOROOT" ]; then
     export GOROOT
     export GOPATH="$HOME/.go"
@@ -77,8 +70,7 @@ fi
 
 export MOZ_DISABLE_SAFE_MODE_KEY="never"
 
-# export M2_HOME=$(command mvn --version | sed 's:.*\(/usr/.*/libexec\).*:\1:gp;d')
-export M2_HOME="/usr/local/Cellar/maven/3.6.3_1/libexec"
+export M2_HOME="/usr/local/opt/maven/libexec"
 
 export PATH="/usr/local/opt/curl-openssl/bin:$PATH"
 
