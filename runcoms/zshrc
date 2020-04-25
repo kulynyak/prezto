@@ -120,6 +120,26 @@ function sshlist() {
   awk '$1 ~ /Host$/ {for (i=2; i<=NF; i++) print $i}' ~/.ssh/config
 }
 
+function colours() {
+  # about 'print colors'
+  for i in {0..255}; do
+    printf "\x1b[38;5;${i}mcolour${i}\n"
+  done
+}
+
+function catt() {
+  # about 'display whatever file is regular file or folder'
+  # param '1: target file or dir'
+  # example '$ catt ~/.zshrc'
+  for i in "$@"; do
+    if [ -d "$i" ]; then
+      ll "$i"
+    else
+      cat "$i"
+    fi
+  done
+}
+
 alias zoo='cd ~/projects/kafka/kafka_2.11-2.0.0 && rm -Rf /tmp/zookeeper/* &>/dev/null; ./bin/zookeeper-server-start.sh ./config/zookeeper.properties'
 alias kaf='cd ~/projects/kafka/kafka_2.11-2.0.0 && rm -Rf /tmp/kafka-logs/* &>/dev/null; ./bin/kafka-server-start.sh ./config/server.properties'
 alias ckz='rm -Rf /tmp/kafka-logs/* &>/dev/null; rm -Rf /tmp/zookeeper/* &>/dev/null'
