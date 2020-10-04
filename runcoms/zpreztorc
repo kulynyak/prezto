@@ -58,6 +58,7 @@ zstyle ':prezto:load' pmodule \
   'ra-git' \
   'net' \
   'mvn' \
+  'alacritty' \
   'prompt'
 
 #
@@ -231,7 +232,7 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 # zstyle ':prezto:module:tmux:auto-start' local 'yes'
 
 # Auto start a session when Zsh is launched in a SSH connection.
-zstyle ':prezto:module:tmux:auto-start' remote 'yes'
+# zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
 # Integrate with iTerm2.
 # zstyle ':prezto:module:tmux:iterm' integrate 'yes'
@@ -246,4 +247,4 @@ zstyle ':prezto:module:tmux:session' name 'local'
 # Enabled safe options. This aliases cp, ln, mv and rm so that they prompt
 # before deleting or overwriting files. Set to 'no' to disable this safer
 # behavior.
-zstyle ':prezto:module:utility' safe-ops 'yes'
+zstyle ':prezto:module:utility' safe-ops 'no'

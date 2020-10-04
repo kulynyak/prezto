@@ -68,13 +68,35 @@ fi
 
 [[ -d /usr/local/opt/mongodb@3.4/bin ]] && PATH="/usr/local/opt/mongodb@3.4/bin:$PATH"
 
+# disable to run Firefox in safe mode
 export MOZ_DISABLE_SAFE_MODE_KEY="never"
 
+# maven
 export M2_HOME="/usr/local/opt/maven/libexec"
 
+# curl
 export PATH="/usr/local/opt/curl-openssl/bin:$PATH"
 
+# misc
 export PATH="$PATH:$HOME/hacker1/xsser"
+
+# gettext
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/gettext/lib"
+export CPPFLAGS="-I/usr/local/opt/gettext/include"
+
+# node10 for angularjs 1.5.8
+# export PATH="/usr/local/opt/node@10/bin:$PATH"
+
+# doom
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
+# kafka tools
+export PATH="$PATH:/Users/akulynyak/tools/confluent-5.5.1/bin"
 
 # the last one
 export PATH=".:$PATH"
+
+export SYSTEM_VERSION_COMPAT=1
+
+
