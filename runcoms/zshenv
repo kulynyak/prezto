@@ -6,9 +6,11 @@
 #
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
-if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprofile"
+if [[ ("$SHLVL" -eq 1 && ! -o LOGIN) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+    source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # set the github API token for homebrew
 HOMEBREW_GITHUB_API_TOKEN_PATH="$HOME/Dropbox/sync.dotfiles/brew.github.token.txt"
@@ -19,13 +21,14 @@ HOMEBREW_GITHUB_API_TOKEN_PATH="$HOME/Dropbox/sync.dotfiles/brew.github.token.tx
 # [[ -d "$GNU_BIN" ]] && PATH="$GNU_BIN:$PATH"
 
 # Java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
 # export _JAVA_OPTIONS="-Djava.net.preferIPv4Stack=true"
-# export JAVA_HOME="$(/usr/libexec/java_home -v 13)"
-# export JAVA11_HOME="$(/usr/libexec/java_home -v 11)"
-# export JAVA13_HOME="$(/usr/libexec/java_home -v 13)"
-# export JAVA8_HOME="$(/usr/libexec/java_home -v 1.8)"
 # export JAVA7_HOME="$(/usr/libexec/java_home -v 1.7)"
+# export JAVA8_HOME="$(/usr/libexec/java_home -v 1.8)"
+export JAVA11_HOME="$(/usr/libexec/java_home -v 11)"
+# export JAVA13_HOME="$(/usr/libexec/java_home -v 13)"
+# export JAVA14_HOME="$(/usr/libexec/java_home -v 14)"
+# export JAVA15_HOME="$(/usr/libexec/java_home -v 15)"
+export JAVA_HOME="$JAVA11_HOME"
 
 # bin in home dir
 HOME_BIN="$HOME/bin"
@@ -39,7 +42,7 @@ MANPATH_GNU="/usr/local/opt/findutils/libexec/gnuman"
 ANDROID_HOME="$HOME/Library/Android/sdk"
 if [[ -d "$ANDROID_HOME" ]]; then
     export ANDROID_HOME
-    PATH="$ANDROID_HOME/platform-tools:$PATH"
+    PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$PATH"
 fi
 
 # anaconda3
@@ -66,37 +69,48 @@ if [ -d "$RUBY_PATH" ]; then
     PATH="$RUBY_PATH/bin:${PATH}"
 fi
 
-[[ -d /usr/local/opt/mongodb@3.4/bin ]] && PATH="/usr/local/opt/mongodb@3.4/bin:$PATH"
-
 # disable to run Firefox in safe mode
 export MOZ_DISABLE_SAFE_MODE_KEY="never"
 
 # maven
-export M2_HOME="/usr/local/opt/maven/libexec"
+M2_HOME="/usr/local/opt/maven/libexec"
+[[ -d "$M2_HOME" ]] && export M2_HOME
 
 # curl
-export PATH="/usr/local/opt/curl-openssl/bin:$PATH"
+CURLP="/usr/local/opt/curl-openssl/bin"
+[[ -d "$CURLP" ]] && PATH="$CURLP:$PATH"
 
 # misc
-export PATH="$PATH:$HOME/hacker1/xsser"
+PATH="$PATH:$HOME/hacker1/xsser"
 
 # gettext
-export PATH="/usr/local/opt/gettext/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/gettext/lib"
-export CPPFLAGS="-I/usr/local/opt/gettext/include"
-
-# node10 for angularjs 1.5.8
-# export PATH="/usr/local/opt/node@10/bin:$PATH"
-
-# doom
-export PATH="$HOME/.emacs.d/bin:$PATH"
+GETTXT="/usr/local/opt/gettext"
+if [ -d "$GETTXT" ]; then
+    export LDFLAGS="$LDFLAGS -L$GETTXT/lib"
+    export CPPFLAGS="$CPPFLAGS -I$GETTXT/include"
+    PATH="$GETTXT/bin:${PATH}"
+fi
 
 # kafka tools
-export PATH="$PATH:/Users/akulynyak/tools/confluent-5.5.1/bin"
+KFT="$HOME/tools/confluent-5.5.1/bin"
+[ -d "$KFT" ] && PATH="$PATH:$KFT"
+
+WORDS="$HOME/h1/words"
+[[ -d "$WORDS" ]] && PATH="$WORDS:$PATH"
+
+NVM_DIR="$HOME/.nvm"
+[[ -d "$NVM_DIR" ]] && export NVM_DIR
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh" # This loads nvm
+
+# APR
+[[ -d "/usr/local/opt/apr/bin" ]] && PATH="/usr/local/opt/apr/bin:$PATH"
+[[ -d "usr/local/opt/apr-util/bin" ]] && PATH="/usr/local/opt/apr-util/bin:$PATH"
+
+NODE_PATH="/usr/local/opt/node@10"
+[[ -d "$NODE_PATH" ]] && PATH="$NODE_PATH/bin:$PATH"
+
+WMVARE_PATH="/Applications/VMware Fusion.app/Contents/Public"
+[[ -d "$WMVARE_PATH" ]] && PATH="$PATH:$WMVARE_PATH"
 
 # the last one
 export PATH=".:$PATH"
-
-export SYSTEM_VERSION_COMPAT=1
-
-
