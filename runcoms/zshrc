@@ -82,6 +82,8 @@ alias cat='gcat'
 
 alias zcat='gzcat'
 
+alias rm-relocated='rm /Users/akulynyak/Desktop/Relocated\ Items.nosync && rm /Users/Shared/Relocated\ Items'
+
 function lsgrep() {
   # about 'search through directory contents with grep'
   gls -l | grep -E -i "$*"
