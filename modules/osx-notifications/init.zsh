@@ -7,7 +7,8 @@ if (( ! $+commands[say] )); then
 fi
 
 # display notification
-alias ndone="osascript -e 'display notification \"Done\" with title \"Terminal\"'"
+# alias ndone="osascript -e 'display notification \"Done\" with title \"Terminal\"'"
+alias ndone='open -g "hammerspoon://task-completed?message=Done"'
 # say
 alias lmk="say 'Process complete'"
 # "Done" notification
