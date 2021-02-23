@@ -88,6 +88,16 @@ alias rm-relocated='rm /Users/akulynyak/Desktop/Relocated\ Items.nosync && rm /U
 
 alias ypwd='pwd | pbcopy'
 
+alias lsbundleid="osascript -e \
+'on run args
+set output to {}
+repeat with param in args
+set end of output to id of app param
+end
+set text item delimiters to linefeed
+output as text
+end'"
+
 function lsgrep() {
   # about 'search through directory contents with grep'
   gls -l | grep -E -i "$*"
