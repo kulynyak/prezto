@@ -84,6 +84,8 @@ alias head='ghead'
 
 alias zcat='gzcat'
 
+alias tailf='tail -f'
+
 alias rm-relocated='rm /Users/akulynyak/Desktop/Relocated\ Items.nosync && rm /Users/Shared/Relocated\ Items'
 
 alias ypwd='pwd | pbcopy'
@@ -164,9 +166,17 @@ function catt() {
 alias bil="cd ~/projects/billing && node billingstub.js"
 alias zoo='cd ~/projects/kafka/kafka_2.11-2.0.0 && rm -Rf /tmp/zookeeper/* &>/dev/null; ./bin/zookeeper-server-start.sh ./config/zookeeper.properties'
 alias kaf='cd ~/projects/kafka/kafka_2.11-2.0.0 && rm -Rf /tmp/kafka-logs/* &>/dev/null; ./bin/kafka-server-start.sh ./config/server.properties'
-alias ckz='rm -Rf /tmp/kafka-logs/* &>/dev/null; rm -Rf /tmp/zookeeper/* &>/dev/null; rm -Rf /lsurf/scg/logs/*.log; rm -Rf /Users/akulynyak/projects/scg-web/user-ui/tmp/*; rm -Rf /Users/akulynyak/projects/scg-web/admin-ui/tmp/*'
 
+alias tailf='tail -f'
+alias ckz='rm -Rf /tmp/kafka-logs/* &>/dev/null; rm -Rf /tmp/zookeeper/* &>/dev/null; rm -Rf /lsurf/scg/logs/*.log &>/dev/null; rm -Rf /Users/akulynyak/projects/scg-web/user-ui/tmp/* &>/dev/null; rm -Rf /Users/akulynyak/projects/scg-web/admin-ui/tmp/* &>/dev/null'
+
+alias tailf='tail -f'
+
+
+alias tailf='tail -f'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+
+alias tailf='tail -f'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source /Users/akulynyak/.config/broot/launcher/bash/br
